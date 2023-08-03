@@ -1,0 +1,5 @@
+pip install numpy, seaborn, matplotlib, fastapi, uvicorn, pandas, pickle
+
+input:
+================================================================
+{"data": "Female,No,No,Yes,1,Yes,No,Fiber optic,No,No,No,No,Yes,No,Month-to-month,Yes,Electronic check,79.35,79.35"}
