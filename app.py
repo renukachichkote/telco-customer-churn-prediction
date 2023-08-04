@@ -41,14 +41,17 @@ async def predict(data: dict):
         df2_combined = pd.concat([df2.drop(columns=columns_to_dummify), df2_dummies_subset], axis=1)
         print("df2_combined: ", df2_combined)
         
-        # Predict using the model
         predictions = model.predict(df2_combined.tail(1))
-        print("predictions: ", predictions)
-
-        # Map predictions to "No" and "Yes"
-        mapped_predictions = ["No" if p == 0 else "Yes" for p in predictions]
-
-        return {"prediction": mapped_predictions}
+        churn_probability = model.predict_proba(df2_combined.tail(1))[:, 1] * 100
+        
+        if predictions[0] == 1:
+            message = "This customer is likely to be churned!!"
+        else:
+            message = "This customer is likely to continue!!"
+            
+        confidence = f"Confidence: {churn_probability[0]:.2f}%"
+        
+        return {"message": message, "confidence": confidence}
 
     except Exception as e:
         print(e)
