@@ -1,9 +1,13 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(current_dir, 'rfc_model.sav')
  
 # Load the model
-model = pickle.load(open('rfc_model.sav', 'rb'))
+model = pickle.load(open(model_path, 'rb'))
  
 # Load the data to get the columns
 df1 = pd.read_csv('first_churn.csv')
