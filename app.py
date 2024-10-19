@@ -4,6 +4,7 @@ import pickle
 import os
 
 os.system('pip install scikit-learn')
+import sklearn
 current_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(current_dir, 'rfc_model.sav')
  
